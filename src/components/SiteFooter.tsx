@@ -26,7 +26,8 @@ export const SiteFooter = () => {
           </h3>
           <ul className="mt-4 space-y-2 text-sm text-primary-foreground/70">
             <li><Link to="/" className="hover:text-accent">Home</Link></li>
-            <li><Link to="/news" className="hover:text-accent">News & Events</Link></li>
+            <li><Link to="/events" className="hover:text-accent">Events</Link></li>
+            <li><Link to="/news" className="hover:text-accent">News</Link></li>
             <li><Link to="/team" className="hover:text-accent">Team</Link></li>
             <li><Link to="/donate" className="hover:text-accent">Donate</Link></li>
           </ul>

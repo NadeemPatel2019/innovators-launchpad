@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="IIA">
+  <defs>
+    <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
+      <!-- Brand Illini Orange -> sky -> deep navy (matches site gradient directionally) -->
+      <stop offset="0%" stop-color="hsl(21 100% 51%)" />
+      <stop offset="55%" stop-color="hsl(195 100% 42%)" />
+      <stop offset="100%" stop-color="hsl(215 65% 12%)" />
+    </linearGradient>
+  </defs>
+  <rect x="4" y="4" width="56" height="56" rx="14" fill="url(#g)" />
+  <!-- Letter "I" built from shapes (more reliable than text rendering in favicons) -->
+  <rect x="28" y="18" width="8" height="28" rx="2" fill="hsl(0 0% 100%)" />
+</svg>

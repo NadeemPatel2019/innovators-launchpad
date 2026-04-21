@@ -1,5 +1,19 @@
 import { SiteLayout } from "@/components/SiteLayout";
 import { PageHeader } from "@/components/PageHeader";
+import { FadeInInView } from "@/components/Reveal";
+
+const rawTeamPhotos = import.meta.glob("../assets/team/*.{png,jpg,jpeg,webp}", {
+  eager: true,
+  import: "default",
+}) as Record<string, string>;
+
+const teamPhotos = Object.fromEntries(
+  Object.entries(rawTeamPhotos).map(([path, src]) => {
+    const filename = path.split("/").pop() ?? "";
+    const stem = filename.replace(/\.[^.]+$/, "").trim().toLowerCase();
+    return [stem, src];
+  }),
+);
 
 interface Member {
   name: string;
@@ -22,10 +36,10 @@ const board: Member[] = [
   { name: "David Pak", role: "Vice President", major: "Carle Illinois College of Medicine" },
   { name: "Conway Hsieh", role: "Treasurer", major: "Carle Illinois College of Medicine" },
   { name: "Ayse Ozkan", role: "Secretary", major: "Carle Illinois College of Medicine" },
-  { name: "Brian Ellis", role: "Lead Engineer", major: "Bioengineering" },
-  { name: "Jonah Dewing", role: "Lead Engineer", major: "Bioengineering" },
-  { name: "Sathveka Sembian", role: "Lead Engineer", major: "Bioengineering" },
-  { name: "Amogh Angadi", role: "Lead Engineer", major: "Bioengineering" },
+  { name: "Brian Ellis", role: "Lead Engineer", major: "Carle Illinois College of Medicine" },
+  { name: "Jonah Dewing", role: "Lead Engineer", major: "Carle Illinois College of Medicine" },
+  { name: "Sathveka Sembian", role: "Lead Engineer", major: "Carle Illinois College of Medicine" },
+  { name: "Amogh Angadi", role: "Lead Engineer", major: "Carle Illinois College of Medicine" },
   { name: "Meenakshi Singhal", role: "Community Outreach", major: "Carle Illinois College of Medicine" },
   { name: "Cindy Mei", role: "Community Outreach", major: "Carle Illinois College of Medicine" },
   { name: "Mehreen Ali", role: "Community Outreach & Research", major: "Carle Illinois College of Medicine" },
@@ -38,8 +52,21 @@ const partners: Member[] = [
   { name: "Sofia Ranallo", role: "Research Partner", major: "Bioengineering — 2nd year" },
 ];
 
+const teamSections = [
+  { id: "leadership", label: "Leadership" },
+  { id: "chapter-board", label: "Chapter Board" },
+  { id: "faculty-partners", label: "Faculty Advisor & Undergraduate Partners" },
+];
+
 const initials = (n: string) =>
   n.split(" ").map((s) => s[0]).join("").slice(0, 2).toUpperCase();
+
+const memberSlug = (name: string) =>
+  name
+    .toLowerCase()
+    .replace(/\bdr\.?\s+/g, "")
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-+|-+$/g, "");
 
 const palette = [
   "from-brand-navy to-brand-industrial",
@@ -51,28 +78,55 @@ const palette = [
 ];
 
 const Card = ({ m, i }: { m: Member; i: number }) => (
-  <article className="group rounded-2xl border border-border bg-card p-6 shadow-card transition hover:-translate-y-1 hover:shadow-elevated">
-    <div
-      className={`grid h-16 w-16 place-items-center rounded-xl bg-gradient-to-br ${palette[i % palette.length]} font-serif text-xl font-semibold text-primary-foreground shadow-card`}
-      aria-hidden
-    >
-      {initials(m.name)}
-    </div>
-    <h3 className="mt-5 font-serif text-lg font-semibold text-foreground">{m.name}</h3>
-    <p className="mt-1 text-sm font-medium text-accent">{m.role}</p>
-    <p className="mt-1 text-sm text-muted-foreground">{m.major}</p>
-  </article>
+  <FadeInInView delay={Math.min(i * 0.06, 0.3)}>
+    <article className="group rounded-2xl border border-border bg-card p-6 shadow-card transition hover:-translate-y-1 hover:shadow-elevated">
+      {teamPhotos[memberSlug(m.name)] ? (
+        <div className="mx-auto w-full max-w-[240px] overflow-hidden rounded-xl shadow-card">
+          <img
+            src={teamPhotos[memberSlug(m.name)]}
+            alt={`${m.name} headshot`}
+            loading="lazy"
+            width={240}
+            height={300}
+            className="aspect-[4/5] w-full object-cover object-top"
+          />
+        </div>
+      ) : (
+        <div
+          className={`mx-auto grid aspect-[4/5] w-full max-w-[240px] place-items-center rounded-xl bg-gradient-to-br ${palette[i % palette.length]} font-serif text-xl font-semibold text-primary-foreground shadow-card`}
+          aria-hidden
+        >
+          {initials(m.name)}
+        </div>
+      )}
+      <h3 className="mt-5 font-serif text-lg font-semibold text-foreground">{m.name}</h3>
+      <p className="mt-1 text-sm font-medium text-accent">{m.role}</p>
+      <p className="mt-1 text-sm text-muted-foreground">{m.major}</p>
+    </article>
+  </FadeInInView>
 );
 
-const Section = ({ title, eyebrow, members }: { title: string; eyebrow: string; members: Member[] }) => (
-  <section className="container-wide py-16 lg:py-20">
-    <div className="max-w-2xl">
-      <p className="eyebrow">{eyebrow}</p>
-      <h2 className="display mt-3">{title}</h2>
-    </div>
-    <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-      {members.map((m, i) => <Card key={m.name} m={m} i={i} />)}
-    </div>
+const Section = ({
+  id,
+  title,
+  eyebrow,
+  members,
+}: {
+  id: string;
+  title: string;
+  eyebrow: string;
+  members: Member[];
+}) => (
+  <section id={id} className="scroll-mt-40 lg:scroll-mt-44">
+    <FadeInInView className="container-wide py-16 lg:py-20">
+      <div className="max-w-2xl">
+        <p className="eyebrow">{eyebrow}</p>
+        <h2 className="display mt-3">{title}</h2>
+      </div>
+      <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+        {members.map((m, i) => <Card key={m.name} m={m} i={i} />)}
+      </div>
+    </FadeInInView>
   </section>
 );
 
@@ -84,11 +138,33 @@ const Team = () => {
         title="The students, advisors, and partners building Innovators in Action."
         description="A coalition of medical, engineering, and design students working alongside faculty mentors and community collaborators."
       />
-      <Section eyebrow="IIA Executive Team" title="Leadership" members={executive} />
+      <nav
+        aria-label="Team sections"
+        className="sticky top-16 z-30 border-b border-border bg-background/80 backdrop-blur lg:top-20"
+      >
+        <div className="container-wide flex gap-1 overflow-x-auto py-3">
+          {teamSections.map((section) => (
+            <a
+              key={section.id}
+              href={`#${section.id}`}
+              className="whitespace-nowrap rounded-full px-4 py-2 text-sm font-medium text-foreground/70 transition hover:bg-muted hover:text-foreground"
+            >
+              {section.label}
+            </a>
+          ))}
+        </div>
+      </nav>
+
+      <Section id="leadership" eyebrow="IIA Executive Team" title="Leadership" members={executive} />
       <div className="border-t border-border" />
-      <Section eyebrow="IIA CIMED Board" title="Chapter board" members={board} />
+      <Section id="chapter-board" eyebrow="IIA CIMED Board" title="Chapter Board" members={board} />
       <div className="border-t border-border" />
-      <Section eyebrow="Faculty & partners" title="Faculty advisor & undergraduate partners" members={partners} />
+      <Section
+        id="faculty-partners"
+        eyebrow="Faculty & partners"
+        title="Faculty Advisor & Undergraduate Partners"
+        members={partners}
+      />
     </SiteLayout>
   );
 };

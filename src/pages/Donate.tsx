@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Heart, ArrowRight, Check, Sparkles, Users, Wrench, GraduationCap } from "lucide-react";
 import { SiteLayout } from "@/components/SiteLayout";
+import { FadeInInView, FadeInOnLoad } from "@/components/Reveal";
 import { cn } from "@/lib/utils";
 
 const tiers = [
@@ -35,7 +36,7 @@ const Donate = () => {
           }}
         />
         <div className="container-wide relative grid items-center gap-12 py-20 lg:grid-cols-[1.2fr_1fr] lg:py-28">
-          <div>
+          <FadeInOnLoad duration={0.8}>
             <p className="eyebrow text-accent">
               <Sparkles className="h-3.5 w-3.5" aria-hidden /> Your gift, doubled in impact
             </p>
@@ -61,10 +62,10 @@ const Donate = () => {
                 </li>
               ))}
             </ul>
-          </div>
+          </FadeInOnLoad>
 
           {/* Donate card */}
-          <div className="relative">
+          <FadeInOnLoad className="relative" delay={0.08} duration={0.8}>
             <div className="absolute -inset-6 rounded-[2rem] bg-gradient-accent opacity-25 blur-3xl" aria-hidden />
             <div className="relative rounded-3xl border border-primary-foreground/10 bg-card p-7 text-foreground shadow-elevated lg:p-8">
               <div className="flex items-center gap-3">
@@ -80,34 +81,35 @@ const Donate = () => {
               <fieldset className="mt-6">
                 <legend className="sr-only">Donation amount</legend>
                 <div className="grid grid-cols-2 gap-3">
-                  {tiers.map((t) => {
+                  {tiers.map((t, i) => {
                     const active = !custom && selected === t.amount;
                     return (
-                      <button
-                        key={t.amount}
-                        type="button"
-                        onClick={() => {
-                          setSelected(t.amount);
-                          setCustom("");
-                        }}
-                        aria-pressed={active}
-                        className={cn(
-                          "rounded-xl border p-4 text-left transition",
-                          active
-                            ? "border-accent bg-accent/5 shadow-cta"
-                            : "border-border hover:border-accent/50 hover:bg-muted/40",
-                        )}
-                      >
-                        <p className="font-serif text-2xl font-semibold text-foreground">
-                          ${t.amount}
-                        </p>
-                        <p className="mt-1 text-xs font-semibold uppercase tracking-wider text-accent">
-                          {t.label}
-                        </p>
-                        <p className="mt-1.5 text-xs leading-relaxed text-muted-foreground">
-                          {t.desc}
-                        </p>
-                      </button>
+                      <FadeInInView key={t.amount} delay={Math.min(i * 0.07, 0.2)} amount={0.1}>
+                        <button
+                          type="button"
+                          onClick={() => {
+                            setSelected(t.amount);
+                            setCustom("");
+                          }}
+                          aria-pressed={active}
+                          className={cn(
+                            "rounded-xl border p-4 text-left transition",
+                            active
+                              ? "border-accent bg-accent/5 shadow-cta"
+                              : "border-border hover:border-accent/50 hover:bg-muted/40",
+                          )}
+                        >
+                          <p className="font-serif text-2xl font-semibold text-foreground">
+                            ${t.amount}
+                          </p>
+                          <p className="mt-1 text-xs font-semibold uppercase tracking-wider text-accent">
+                            {t.label}
+                          </p>
+                          <p className="mt-1.5 text-xs leading-relaxed text-muted-foreground">
+                            {t.desc}
+                          </p>
+                        </button>
+                      </FadeInInView>
                     );
                   })}
                 </div>
@@ -143,13 +145,13 @@ const Donate = () => {
                 Secure checkout · Receipt emailed instantly
               </p>
             </div>
-          </div>
+          </FadeInOnLoad>
         </div>
       </section>
 
       {/* Impact statement */}
       <section className="container-wide py-20 lg:py-28">
-        <div className="grid gap-10 lg:grid-cols-[1fr_1.4fr] lg:gap-16">
+        <FadeInInView className="grid gap-10 lg:grid-cols-[1fr_1.4fr] lg:gap-16">
           <div>
             <p className="eyebrow">Your impact</p>
             <h2 className="display mt-4 text-balance">
@@ -161,22 +163,24 @@ const Donate = () => {
             </p>
           </div>
           <div className="grid gap-5 sm:grid-cols-3">
-            {impact.map((c) => (
-              <div key={c.label} className="rounded-2xl border border-border bg-card p-6 shadow-card">
-                <span className="grid h-11 w-11 place-items-center rounded-xl bg-accent/10 text-accent">
-                  <c.icon className="h-5 w-5" aria-hidden />
-                </span>
-                <p className="mt-5 font-serif text-3xl font-semibold text-foreground">{c.value}</p>
-                <p className="mt-1 text-sm text-muted-foreground">{c.label}</p>
-              </div>
+            {impact.map((c, i) => (
+              <FadeInInView key={c.label} delay={Math.min(i * 0.08, 0.2)}>
+                <div className="rounded-2xl border border-border bg-card p-6 shadow-card">
+                  <span className="grid h-11 w-11 place-items-center rounded-xl bg-accent/10 text-accent">
+                    <c.icon className="h-5 w-5" aria-hidden />
+                  </span>
+                  <p className="mt-5 font-serif text-3xl font-semibold text-foreground">{c.value}</p>
+                  <p className="mt-1 text-sm text-muted-foreground">{c.label}</p>
+                </div>
+              </FadeInInView>
             ))}
           </div>
-        </div>
+        </FadeInInView>
       </section>
 
       {/* Other ways */}
       <section className="container-wide pb-24">
-        <div className="rounded-3xl border border-border bg-gradient-soft p-10 lg:p-14">
+        <FadeInInView className="rounded-3xl border border-border bg-gradient-soft p-10 lg:p-14">
           <div className="grid gap-10 lg:grid-cols-2">
             <div>
               <p className="eyebrow">Beyond donating</p>
@@ -192,15 +196,19 @@ const Donate = () => {
                 { t: "Share programming", d: "Amplify our work within your professional networks." },
                 { t: "Become a research partner", d: "Collaborate on publications, grants, and IRB protocols." },
                 { t: "Sponsor an Adapt-a-Thon", d: "Cover materials, food, and venue for an entire event day." },
-              ].map((i) => (
-                <li key={i.t} className="rounded-xl border border-border bg-card p-5 shadow-card">
-                  <p className="font-serif text-base font-semibold text-foreground">{i.t}</p>
-                  <p className="mt-1 text-sm text-muted-foreground">{i.d}</p>
+              ].map((i, idx) => (
+                <li key={i.t}>
+                  <FadeInInView delay={Math.min(idx * 0.07, 0.2)}>
+                    <div className="rounded-xl border border-border bg-card p-5 shadow-card">
+                      <p className="font-serif text-base font-semibold text-foreground">{i.t}</p>
+                      <p className="mt-1 text-sm text-muted-foreground">{i.d}</p>
+                    </div>
+                  </FadeInInView>
                 </li>
               ))}
             </ul>
           </div>
-        </div>
+        </FadeInInView>
       </section>
     </SiteLayout>
   );

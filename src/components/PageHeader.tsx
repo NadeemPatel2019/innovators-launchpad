@@ -1,3 +1,5 @@
+import { FadeInOnLoad } from "@/components/Reveal";
+
 interface Props {
   eyebrow: string;
   title: string;
@@ -16,12 +18,18 @@ export const PageHeader = ({ eyebrow, title, description }: Props) => {
         }}
       />
       <div className="container-wide relative py-20 lg:py-28">
-        <p className="eyebrow text-accent">{eyebrow}</p>
-        <h1 className="display mt-4 max-w-3xl text-primary-foreground">{title}</h1>
+        <FadeInOnLoad>
+          <p className="eyebrow text-accent">{eyebrow}</p>
+        </FadeInOnLoad>
+        <FadeInOnLoad delay={0.1}>
+          <h1 className="display mt-4 max-w-3xl text-primary-foreground">{title}</h1>
+        </FadeInOnLoad>
         {description && (
-          <p className="mt-5 max-w-2xl text-base text-primary-foreground/75 lg:text-lg">
-            {description}
-          </p>
+          <FadeInOnLoad delay={0.2}>
+            <p className="mt-5 max-w-2xl text-base text-primary-foreground/75 lg:text-lg">
+              {description}
+            </p>
+          </FadeInOnLoad>
         )}
       </div>
     </section>

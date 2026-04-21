@@ -5,8 +5,10 @@ import { cn } from "@/lib/utils";
 
 const links = [
   { to: "/", label: "Home" },
-  { to: "/news", label: "News & Events" },
+  { to: "/events", label: "Events" },
+  { to: "/news", label: "News" },
   { to: "/team", label: "Team" },
+  { to: "/contact", label: "Contact" },
   { to: "/donate", label: "Donate" },
 ];
 
@@ -39,7 +41,7 @@ export const SiteHeader = () => {
       <div className="container-wide flex h-16 items-center justify-between gap-6 lg:h-20">
         <Link to="/" className="flex items-center gap-2.5" aria-label="Innovators in Action — Home">
           <span className="grid h-9 w-9 place-items-center rounded-lg bg-gradient-accent text-accent-foreground shadow-cta">
-            <span className="font-serif text-lg font-bold leading-none">i</span>
+            <span className="font-serif text-lg font-bold leading-none">I</span>
           </span>
           <span className="flex flex-col leading-none">
             <span className="font-serif text-base font-semibold tracking-tight text-foreground">
