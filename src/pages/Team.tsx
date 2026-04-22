@@ -1,19 +1,19 @@
+import { useEffect, useState } from "react";
 import { SiteLayout } from "@/components/SiteLayout";
 import { PageHeader } from "@/components/PageHeader";
 import { FadeInInView } from "@/components/Reveal";
 
 const rawTeamPhotos = import.meta.glob("../assets/team/*.{png,jpg,jpeg,webp}", {
-  eager: true,
   import: "default",
-}) as Record<string, string>;
+}) as Record<string, () => Promise<string>>;
 
-const teamPhotos = Object.fromEntries(
+const teamPhotoLoaders = Object.fromEntries(
   Object.entries(rawTeamPhotos).map(([path, src]) => {
     const filename = path.split("/").pop() ?? "";
     const stem = filename.replace(/\.[^.]+$/, "").trim().toLowerCase();
     return [stem, src];
   }),
-);
+) as Record<string, () => Promise<string>>;
 
 interface Member {
   name: string;
@@ -77,34 +77,67 @@ const palette = [
   "from-brand-sky to-brand-industrial",
 ];
 
-const Card = ({ m, i }: { m: Member; i: number }) => (
-  <FadeInInView delay={Math.min(i * 0.06, 0.3)}>
-    <article className="group rounded-2xl border border-border bg-card p-6 shadow-card transition hover:-translate-y-1 hover:shadow-elevated">
-      {teamPhotos[memberSlug(m.name)] ? (
-        <div className="mx-auto w-full max-w-[240px] overflow-hidden rounded-xl shadow-card">
-          <img
-            src={teamPhotos[memberSlug(m.name)]}
-            alt={`${m.name} headshot`}
-            loading="lazy"
-            width={240}
-            height={300}
-            className="aspect-[4/5] w-full object-cover object-top"
-          />
-        </div>
-      ) : (
-        <div
-          className={`mx-auto grid aspect-[4/5] w-full max-w-[240px] place-items-center rounded-xl bg-gradient-to-br ${palette[i % palette.length]} font-serif text-xl font-semibold text-primary-foreground shadow-card`}
-          aria-hidden
-        >
-          {initials(m.name)}
-        </div>
-      )}
-      <h3 className="mt-5 font-serif text-lg font-semibold text-foreground">{m.name}</h3>
-      <p className="mt-1 text-sm font-medium text-accent">{m.role}</p>
-      <p className="mt-1 text-sm text-muted-foreground">{m.major}</p>
-    </article>
-  </FadeInInView>
-);
+const Card = ({ m, i }: { m: Member; i: number }) => {
+  const [photoSrc, setPhotoSrc] = useState<string | null>(null);
+  const [imageFailed, setImageFailed] = useState(false);
+  const slug = memberSlug(m.name);
+
+  useEffect(() => {
+    let cancelled = false;
+    setImageFailed(false);
+
+    const loadPhoto = teamPhotoLoaders[slug];
+    if (!loadPhoto) {
+      setPhotoSrc(null);
+      return () => {
+        cancelled = true;
+      };
+    }
+
+    loadPhoto()
+      .then((src) => {
+        if (!cancelled) setPhotoSrc(src);
+      })
+      .catch(() => {
+        if (!cancelled) setPhotoSrc(null);
+      });
+
+    return () => {
+      cancelled = true;
+    };
+  }, [slug]);
+
+  return (
+    <FadeInInView delay={Math.min(i * 0.06, 0.3)}>
+      <article className="group rounded-2xl border border-border bg-card p-6 shadow-card transition hover:-translate-y-1 hover:shadow-elevated">
+        {photoSrc && !imageFailed ? (
+          <div className="mx-auto w-full max-w-[240px] overflow-hidden rounded-xl shadow-card">
+            <img
+              src={photoSrc}
+              alt={`${m.name} headshot`}
+              loading="lazy"
+              decoding="async"
+              width={240}
+              height={300}
+              className="aspect-[4/5] w-full object-cover object-top"
+              onError={() => setImageFailed(true)}
+            />
+          </div>
+        ) : (
+          <div
+            className={`mx-auto grid aspect-[4/5] w-full max-w-[240px] place-items-center rounded-xl bg-gradient-to-br ${palette[i % palette.length]} font-serif text-xl font-semibold text-primary-foreground shadow-card`}
+            aria-hidden
+          >
+            {initials(m.name)}
+          </div>
+        )}
+        <h3 className="mt-5 font-serif text-lg font-semibold text-foreground">{m.name}</h3>
+        <p className="mt-1 text-sm font-medium text-accent">{m.role}</p>
+        <p className="mt-1 text-sm text-muted-foreground">{m.major}</p>
+      </article>
+    </FadeInInView>
+  );
+};
 
 const Section = ({
   id,
