@@ -128,7 +128,7 @@ const Section = ({
   members: Member[];
 }) => (
   <section id={id} className="scroll-mt-40 lg:scroll-mt-44">
-    <FadeInInView className="container-wide py-16 lg:py-20">
+    <div className="container-wide py-16 lg:py-20">
       <div className="max-w-2xl">
         <p className="eyebrow">{eyebrow}</p>
         <h2 className="display mt-3">{title}</h2>
@@ -136,7 +136,7 @@ const Section = ({
       <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
         {members.map((m, i) => <Card key={m.name} m={m} i={i} />)}
       </div>
-    </FadeInInView>
+    </div>
   </section>
 );
 
