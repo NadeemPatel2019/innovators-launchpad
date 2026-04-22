@@ -3,17 +3,7 @@ import { SiteLayout } from "@/components/SiteLayout";
 import { PageHeader } from "@/components/PageHeader";
 import { FadeInInView } from "@/components/Reveal";
 
-const rawTeamPhotos = import.meta.glob("../assets/team/*.{png,jpg,jpeg,webp}", {
-  import: "default",
-}) as Record<string, () => Promise<string>>;
-
-const teamPhotoLoaders = Object.fromEntries(
-  Object.entries(rawTeamPhotos).map(([path, src]) => {
-    const filename = path.split("/").pop() ?? "";
-    const stem = filename.replace(/\.[^.]+$/, "").trim().toLowerCase();
-    return [stem, src];
-  }),
-) as Record<string, () => Promise<string>>;
+const photoExtensions = ["jpeg", "jpg", "png", "webp"] as const;
 
 interface Member {
   name: string;
@@ -78,39 +68,20 @@ const palette = [
 ];
 
 const Card = ({ m, i }: { m: Member; i: number }) => {
-  const [photoSrc, setPhotoSrc] = useState<string | null>(null);
+  const [extIndex, setExtIndex] = useState(0);
   const [imageFailed, setImageFailed] = useState(false);
   const slug = memberSlug(m.name);
+  const photoSrc = `/team/${slug}.${photoExtensions[extIndex]}`;
 
   useEffect(() => {
-    let cancelled = false;
+    setExtIndex(0);
     setImageFailed(false);
-
-    const loadPhoto = teamPhotoLoaders[slug];
-    if (!loadPhoto) {
-      setPhotoSrc(null);
-      return () => {
-        cancelled = true;
-      };
-    }
-
-    loadPhoto()
-      .then((src) => {
-        if (!cancelled) setPhotoSrc(src);
-      })
-      .catch(() => {
-        if (!cancelled) setPhotoSrc(null);
-      });
-
-    return () => {
-      cancelled = true;
-    };
   }, [slug]);
 
   return (
     <FadeInInView delay={Math.min(i * 0.06, 0.3)}>
       <article className="group rounded-2xl border border-border bg-card p-6 shadow-card transition hover:-translate-y-1 hover:shadow-elevated">
-        {photoSrc && !imageFailed ? (
+        {!imageFailed ? (
           <div className="mx-auto w-full max-w-[240px] overflow-hidden rounded-xl shadow-card">
             <img
               src={photoSrc}
@@ -120,7 +91,13 @@ const Card = ({ m, i }: { m: Member; i: number }) => {
               width={240}
               height={300}
               className="aspect-[4/5] w-full object-cover object-top"
-              onError={() => setImageFailed(true)}
+              onError={() => {
+                if (extIndex < photoExtensions.length - 1) {
+                  setExtIndex((prev) => prev + 1);
+                } else {
+                  setImageFailed(true);
+                }
+              }}
             />
           </div>
         ) : (
