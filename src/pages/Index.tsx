@@ -3,7 +3,7 @@ import { ArrowRight, Sparkles, HeartHandshake, GraduationCap, Wrench } from "luc
 import { SiteLayout } from "@/components/SiteLayout";
 import { MasonryGallery, type GalleryPhoto } from "@/components/MasonryGallery";
 import { FadeInInView, FadeInOnLoad } from "@/components/Reveal";
-const hero = "/iia-mission-2.jpeg";
+const hero = `${import.meta.env.BASE_URL}iia-mission-2.jpeg`;
 import g1 from "@/assets/g1.jpg";
 import g2 from "@/assets/g2.jpg";
 import g3 from "@/assets/g3.jpg";

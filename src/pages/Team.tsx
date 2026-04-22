@@ -71,7 +71,7 @@ const Card = ({ m, i }: { m: Member; i: number }) => {
   const [extIndex, setExtIndex] = useState(0);
   const [imageFailed, setImageFailed] = useState(false);
   const slug = memberSlug(m.name);
-  const photoSrc = `/team/${slug}.${photoExtensions[extIndex]}`;
+  const photoSrc = `${import.meta.env.BASE_URL}team/${slug}.${photoExtensions[extIndex]}`;
 
   useEffect(() => {
     setExtIndex(0);
