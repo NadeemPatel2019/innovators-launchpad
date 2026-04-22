@@ -21,6 +21,21 @@
 
     <link rel="icon" href="/innovators-launchpad/favicon.svg" type="image/svg+xml" />
     <meta name="theme-color" content="#13294B" />
+    <script>
+      // GitHub Pages SPA fallback: convert redirect query back to normal path.
+      (function (l) {
+        if (l.search[1] === "/") {
+          var decoded = l.search
+            .slice(1)
+            .split("&")
+            .map(function (s) {
+              return s.replace(/~and~/g, "&");
+            })
+            .join("?");
+          window.history.replaceState(null, null, l.pathname.slice(0, -1) + decoded + l.hash);
+        }
+      })(window.location);
+    </script>
     <script type="module" crossorigin src="/innovators-launchpad/assets/index-ivUu2piU.js"></script>
     <link rel="stylesheet" crossorigin href="/innovators-launchpad/assets/index-CSSYBwAB.css">
   </head>
