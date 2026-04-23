@@ -103,87 +103,89 @@ const Events = () => {
         </div>
       </nav>
 
-      <div className="container-wide space-y-24 py-20 lg:space-y-32">
+      <div>
         {sections.map((section, idx) => (
           <div key={section.id}>
-            {idx > 0 && <div className="border-t border-border" />}
-            <FadeInInView
-              delay={Math.min(idx * 0.05, 0.2)}
-              duration={0.6}
-            >
-              <article
-                id={section.id}
-                className={cn(
-                  "scroll-mt-40 lg:scroll-mt-44",
-                  section.image ? "grid gap-12 lg:grid-cols-2 lg:items-center" : "grid gap-12",
-                )}
-              >
-            {section.image && (
-              <div className={idx % 2 === 1 ? "lg:order-2" : ""}>
-                <div className="relative">
-                  <div
-                    aria-hidden
-                    className="absolute -inset-3 rounded-[1.75rem] bg-gradient-accent opacity-15 blur-2xl"
-                  />
-                  <img
-                    src={section.image}
-                    alt={section.imageAlt}
-                    loading="lazy"
-                    width={1280}
-                    height={896}
-                    className="relative aspect-[4/3] w-full rounded-2xl object-cover shadow-elevated"
-                  />
-                </div>
-              </div>
-            )}
+            <section className="scroll-mt-40 lg:scroll-mt-44">
+              <div className="container-wide py-16 lg:py-20">
+                <FadeInInView
+                  delay={Math.min(idx * 0.05, 0.2)}
+                  duration={0.6}
+                >
+                  <article
+                    id={section.id}
+                    className={cn(
+                      section.image ? "grid gap-12 lg:grid-cols-2 lg:items-center" : "grid gap-12",
+                    )}
+                  >
+                    {section.image && (
+                      <div className={idx % 2 === 1 ? "lg:order-2" : ""}>
+                        <div className="relative">
+                          <div
+                            aria-hidden
+                            className="absolute -inset-3 rounded-[1.75rem] bg-gradient-accent opacity-15 blur-2xl"
+                          />
+                          <img
+                            src={section.image}
+                            alt={section.imageAlt}
+                            loading="lazy"
+                            width={1280}
+                            height={896}
+                            className="relative aspect-[4/3] w-full rounded-2xl object-cover shadow-elevated"
+                          />
+                        </div>
+                      </div>
+                    )}
 
-            <div>
-              <p className="eyebrow">
-                <section.icon className="h-3.5 w-3.5" aria-hidden /> {section.eyebrow}
-              </p>
-              <h2 className="display mt-4 text-balance">{section.title}</h2>
-              <p className="mt-5 text-lg leading-relaxed text-foreground/85">{section.intro}</p>
-              {section.id === "adapt-a-thon" ? (
-                <AdaptAThonPhases />
-              ) : (
-                section.body.map((p, i) => (
-                  <p key={i} className="mt-4 text-base leading-relaxed text-muted-foreground">
-                    {p}
-                  </p>
-                ))
-              )}
+                    <div>
+                      <p className="eyebrow">
+                        <section.icon className="h-3.5 w-3.5" aria-hidden /> {section.eyebrow}
+                      </p>
+                      <h2 className="display mt-4 text-balance">{section.title}</h2>
+                      <p className="mt-5 text-lg leading-relaxed text-foreground/85">{section.intro}</p>
+                      {section.id === "adapt-a-thon" ? (
+                        <AdaptAThonPhases />
+                      ) : (
+                        section.body.map((p, i) => (
+                          <p key={i} className="mt-4 text-base leading-relaxed text-muted-foreground">
+                            {p}
+                          </p>
+                        ))
+                      )}
 
-              <div className="mt-8 grid gap-4 sm:grid-cols-3">
-                {section.stats.map((s, statIdx) => (
-                  <FadeInInView key={s.label} delay={Math.min(statIdx * 0.06, 0.18)}>
-                    <div className="rounded-xl border border-border bg-card p-4 shadow-card">
-                      <p className="font-serif text-2xl font-semibold text-foreground">{s.value}</p>
-                      <p className="mt-1 text-xs uppercase tracking-wider text-muted-foreground">{s.label}</p>
+                      <div className="mt-8 grid gap-4 sm:grid-cols-3">
+                        {section.stats.map((s, statIdx) => (
+                          <FadeInInView key={s.label} delay={Math.min(statIdx * 0.06, 0.18)}>
+                            <div className="rounded-xl border border-border bg-card p-4 shadow-card">
+                              <p className="font-serif text-2xl font-semibold text-foreground">{s.value}</p>
+                              <p className="mt-1 text-xs uppercase tracking-wider text-muted-foreground">{s.label}</p>
+                            </div>
+                          </FadeInInView>
+                        ))}
+                      </div>
+
+                      <div className="mt-8 rounded-2xl border border-accent/30 bg-accent/5 p-5">
+                        <p className="text-xs font-semibold uppercase tracking-wider text-accent">Upcoming</p>
+                        <h3 className="mt-2 font-serif text-lg font-semibold text-foreground">
+                          {section.upcoming.title}
+                        </h3>
+                        <div className="mt-3 flex flex-wrap gap-x-6 gap-y-2 text-sm text-muted-foreground">
+                          <span className="inline-flex items-center gap-2">
+                            <Calendar className="h-4 w-4 text-accent" aria-hidden /> {section.upcoming.date}
+                          </span>
+                          <span className="inline-flex items-center gap-2">
+                            <MapPin className="h-4 w-4 text-accent" aria-hidden /> {section.upcoming.location}
+                          </span>
+                        </div>
+                      </div>
                     </div>
-                  </FadeInInView>
-                ))}
+                  </article>
+                </FadeInInView>
               </div>
-
-              <div className="mt-8 rounded-2xl border border-accent/30 bg-accent/5 p-5">
-                <p className="text-xs font-semibold uppercase tracking-wider text-accent">Upcoming</p>
-                <h3 className="mt-2 font-serif text-lg font-semibold text-foreground">
-                  {section.upcoming.title}
-                </h3>
-                <div className="mt-3 flex flex-wrap gap-x-6 gap-y-2 text-sm text-muted-foreground">
-                  <span className="inline-flex items-center gap-2">
-                    <Calendar className="h-4 w-4 text-accent" aria-hidden /> {section.upcoming.date}
-                  </span>
-                  <span className="inline-flex items-center gap-2">
-                    <MapPin className="h-4 w-4 text-accent" aria-hidden /> {section.upcoming.location}
-                  </span>
-                </div>
-              </div>
-            </div>
-              </article>
-            </FadeInInView>
+            </section>
+            {idx < sections.length - 1 && <div className="border-t border-border" />}
           </div>
         ))}
-
       </div>
     </SiteLayout>
   );
