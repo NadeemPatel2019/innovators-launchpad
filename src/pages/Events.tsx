@@ -84,6 +84,8 @@ const Events = () => {
         eyebrow="Events"
         title="Programming that meets real community needs."
         description="Three pillars of work — Adapt-a-Thon, Mini Make-a-Thon, and our yearly research project — drive everything from a Saturday workshop to a year-long study."
+        imageSrc={`${import.meta.env.BASE_URL}events-1.jpeg`}
+        imageAlt="Students and community members collaborating during an Innovators in Action event."
       />
 
       {/* Quick nav */}
@@ -103,18 +105,19 @@ const Events = () => {
 
       <div className="container-wide space-y-24 py-20 lg:space-y-32">
         {sections.map((section, idx) => (
-          <FadeInInView
-            key={section.id}
-            delay={Math.min(idx * 0.05, 0.2)}
-            duration={0.6}
-          >
-            <article
-              id={section.id}
-              className={cn(
-                "scroll-mt-40 lg:scroll-mt-44",
-                section.image ? "grid gap-12 lg:grid-cols-2 lg:items-center" : "grid gap-12",
-              )}
+          <div key={section.id}>
+            {idx > 0 && <div className="border-t border-border" />}
+            <FadeInInView
+              delay={Math.min(idx * 0.05, 0.2)}
+              duration={0.6}
             >
+              <article
+                id={section.id}
+                className={cn(
+                  "scroll-mt-40 lg:scroll-mt-44",
+                  section.image ? "grid gap-12 lg:grid-cols-2 lg:items-center" : "grid gap-12",
+                )}
+              >
             {section.image && (
               <div className={idx % 2 === 1 ? "lg:order-2" : ""}>
                 <div className="relative">
@@ -176,8 +179,9 @@ const Events = () => {
                 </div>
               </div>
             </div>
-            </article>
-          </FadeInInView>
+              </article>
+            </FadeInInView>
+          </div>
         ))}
 
       </div>
