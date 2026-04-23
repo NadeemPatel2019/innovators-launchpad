@@ -1,12 +1,14 @@
 import { useEffect, useState } from "react";
 import { SiteLayout } from "@/components/SiteLayout";
 import { PageHeader } from "@/components/PageHeader";
-import { FadeInInView } from "@/components/Reveal";
+import { FadeInOnLoad } from "@/components/Reveal";
 
 const photoExtensions = ["jpeg", "jpg", "png", "webp"] as const;
 
 interface Member {
   name: string;
+  /** Appended to `name` in the heading (e.g. ", M.A., PSM") without affecting photo slug. */
+  nameSuffix?: string;
   role: string;
   major: string;
 }
@@ -19,6 +21,22 @@ const executive: Member[] = [
   { name: "Brian Wadugu", role: "Executive Team", major: "Carle Illinois College of Medicine" },
   { name: "Shelby Oke", role: "Executive Team", major: "Carle Illinois College of Medicine" },
   { name: "Diamond Coleman", role: "Executive Team", major: "Carle Illinois College of Medicine" },
+];
+
+const executiveBoard: Member[] = [
+  {
+    name: "Florence Adibu",
+    nameSuffix: ", M.A., PSM",
+    role: "Executive Board",
+    major: "Carle Illinois College of Medicine",
+  },
+  { name: "Dr. Nicole del Castillo", role: "Executive Board", major: "Carle Illinois College of Medicine" },
+  { name: "Dr. Julie Cutright", role: "Executive Board", major: "Carle Illinois College of Medicine" },
+  { name: "Dr. Allison Jones", role: "Executive Board", major: "Carle Illinois College of Medicine" },
+  { name: "Dr. Ruby Mendenhall", role: "Executive Board", major: "Carle Illinois College of Medicine" },
+  { name: "Dr. Deana McDonagh", role: "Executive Board", major: "Carle Illinois College of Medicine" },
+  { name: "Dr. Imanni Sheppard", role: "Executive Board", major: "Carle Illinois College of Medicine" },
+  { name: "Dr. Victor Stams", role: "Executive Board", major: "Carle Illinois College of Medicine" },
 ];
 
 const board: Member[] = [
@@ -44,6 +62,7 @@ const partners: Member[] = [
 
 const teamSections = [
   { id: "leadership", label: "Leadership" },
+  { id: "executive-board", label: "Executive Board" },
   { id: "chapter-board", label: "Chapter Board" },
   { id: "faculty-partners", label: "Faculty Advisor & Undergraduate Partners" },
 ];
@@ -79,13 +98,13 @@ const Card = ({ m, i }: { m: Member; i: number }) => {
   }, [slug]);
 
   return (
-    <FadeInInView delay={Math.min(i * 0.06, 0.3)}>
+    <FadeInOnLoad delay={Math.min(i * 0.06, 0.3)}>
       <article className="group rounded-2xl border border-border bg-card p-6 shadow-card transition hover:-translate-y-1 hover:shadow-elevated">
         {!imageFailed ? (
           <div className="mx-auto w-full max-w-[240px] overflow-hidden rounded-xl shadow-card">
             <img
               src={photoSrc}
-              alt={`${m.name} headshot`}
+              alt={`${m.name}${m.nameSuffix ?? ""} headshot`}
               loading="lazy"
               decoding="async"
               width={240}
@@ -108,11 +127,14 @@ const Card = ({ m, i }: { m: Member; i: number }) => {
             {initials(m.name)}
           </div>
         )}
-        <h3 className="mt-5 font-serif text-lg font-semibold text-foreground">{m.name}</h3>
+        <h3 className="mt-5 font-serif text-lg font-semibold text-foreground">
+          {m.name}
+          {m.nameSuffix ?? ""}
+        </h3>
         <p className="mt-1 text-sm font-medium text-accent">{m.role}</p>
         <p className="mt-1 text-sm text-muted-foreground">{m.major}</p>
       </article>
-    </FadeInInView>
+    </FadeInOnLoad>
   );
 };
 
@@ -166,6 +188,13 @@ const Team = () => {
       </nav>
 
       <Section id="leadership" eyebrow="IIA Executive Team" title="Leadership" members={executive} />
+      <div className="border-t border-border" />
+      <Section
+        id="executive-board"
+        eyebrow="IIA Executive Board"
+        title="Executive Board"
+        members={executiveBoard}
+      />
       <div className="border-t border-border" />
       <Section id="chapter-board" eyebrow="IIA CIMED Board" title="Chapter Board" members={board} />
       <div className="border-t border-border" />
