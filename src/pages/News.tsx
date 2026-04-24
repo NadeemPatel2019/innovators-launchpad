@@ -2,6 +2,7 @@ import { Users, ArrowRight, Microscope, Wrench } from "lucide-react";
 import { SiteLayout } from "@/components/SiteLayout";
 import { PageHeader } from "@/components/PageHeader";
 import { FadeInInView } from "@/components/Reveal";
+import { SectionTabs } from "@/components/SectionTabs";
 import g6 from "@/assets/g6.jpg";
 
 const News = () => {
@@ -12,25 +13,13 @@ const News = () => {
         title="Updates from Innovators in Action."
         description="Announcements, milestones, and what’s next for our community programming."
       />
-      <nav
-        aria-label="News sections"
-        className="sticky top-16 z-30 border-b border-border bg-background/80 backdrop-blur lg:top-20"
-      >
-        <div className="container-wide flex gap-1 overflow-x-auto py-3">
-          <a
-            href="#registered-non-profit"
-            className="whitespace-nowrap rounded-full px-4 py-2 text-sm font-medium text-foreground/70 transition hover:bg-muted hover:text-foreground"
-          >
-            Registered Non-profit
-          </a>
-          <a
-            href="#wcia-news"
-            className="whitespace-nowrap rounded-full px-4 py-2 text-sm font-medium text-foreground/70 transition hover:bg-muted hover:text-foreground"
-          >
-            WCIA News
-          </a>
-        </div>
-      </nav>
+      <SectionTabs
+        ariaLabel="News sections"
+        items={[
+          { id: "registered-non-profit", label: "Registered Non-profit" },
+          { id: "wcia-news", label: "WCIA News" },
+        ]}
+      />
 
       <section className="container-wide py-20 lg:py-28">
         <FadeInInView

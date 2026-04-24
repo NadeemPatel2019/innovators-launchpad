@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { SiteLayout } from "@/components/SiteLayout";
 import { PageHeader } from "@/components/PageHeader";
 import { FadeInOnLoad } from "@/components/Reveal";
+import { SectionTabs } from "@/components/SectionTabs";
 
 const photoExtensions = ["jpeg", "jpg", "png", "webp"] as const;
 
@@ -170,22 +171,7 @@ const Team = () => {
         title="The students, advisors, and partners building Innovators in Action."
         description="A coalition of medical, engineering, and design students working alongside faculty mentors and community collaborators."
       />
-      <nav
-        aria-label="Team sections"
-        className="sticky top-16 z-30 border-b border-border bg-background/80 backdrop-blur lg:top-20"
-      >
-        <div className="container-wide flex gap-1 overflow-x-auto py-3">
-          {teamSections.map((section) => (
-            <a
-              key={section.id}
-              href={`#${section.id}`}
-              className="whitespace-nowrap rounded-full px-4 py-2 text-sm font-medium text-foreground/70 transition hover:bg-muted hover:text-foreground"
-            >
-              {section.label}
-            </a>
-          ))}
-        </div>
-      </nav>
+      <SectionTabs ariaLabel="Team sections" items={teamSections} />
 
       <Section id="leadership" eyebrow="IIA Executive Team" title="Leadership" members={executive} />
       <div className="border-t border-border" />

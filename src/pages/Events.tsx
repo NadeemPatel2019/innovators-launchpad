@@ -3,6 +3,7 @@ import { SiteLayout } from "@/components/SiteLayout";
 import { PageHeader } from "@/components/PageHeader";
 import { FadeInInView } from "@/components/Reveal";
 import { AdaptAThonPhases } from "@/components/AdaptAThonPhases";
+import { SectionTabs } from "@/components/SectionTabs";
 import { cn } from "@/lib/utils";
 import g5 from "@/assets/g5.jpg";
 import g7 from "@/assets/g7.jpg";
@@ -84,24 +85,44 @@ const Events = () => {
         eyebrow="Events"
         title="Programming that meets real community needs."
         description="Three pillars of work — Adapt-a-Thon, Mini Make-a-Thon, and our yearly research project — drive everything from a Saturday workshop to a year-long study."
-        imageSrc={`${import.meta.env.BASE_URL}events-1.jpeg`}
-        imageAlt="Students and community members collaborating during an Innovators in Action event."
+        aside={
+          <div className="rounded-2xl border border-accent/30 bg-accent/5 p-5 text-left">
+            <p className="text-xs font-semibold uppercase tracking-wider text-accent">Upcoming</p>
+            <div className="mt-4 space-y-5">
+              {sections.map((section) => (
+                <div
+                  key={section.id}
+                  className="border-t border-primary-foreground/15 pt-5 first:border-t-0 first:pt-0"
+                >
+                  <p className="text-xs font-semibold uppercase tracking-wider text-primary-foreground/70">
+                    {section.title}
+                  </p>
+                  <h3 className="mt-1 font-serif text-lg font-semibold text-primary-foreground">
+                    {section.upcoming.title}
+                  </h3>
+                  <div className="mt-3 flex flex-wrap gap-x-6 gap-y-2 text-sm text-primary-foreground/80">
+                    <span className="inline-flex items-center gap-2">
+                      <Calendar className="h-4 w-4 shrink-0 text-accent" aria-hidden /> {section.upcoming.date}
+                    </span>
+                    <span className="inline-flex items-center gap-2">
+                      <MapPin className="h-4 w-4 shrink-0 text-accent" aria-hidden /> {section.upcoming.location}
+                    </span>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        }
       />
 
       {/* Quick nav */}
-      <nav aria-label="Section" className="border-b border-border bg-background/80 sticky top-16 z-30 backdrop-blur lg:top-20">
-        <div className="container-wide flex gap-1 overflow-x-auto py-3">
-          {sections.map((s) => (
-            <a
-              key={s.id}
-              href={`#${s.id}`}
-              className="whitespace-nowrap rounded-full px-4 py-2 text-sm font-medium text-foreground/70 transition hover:bg-muted hover:text-foreground"
-            >
-              {s.title}
-            </a>
-          ))}
-        </div>
-      </nav>
+      <SectionTabs
+        ariaLabel="Section"
+        items={sections.map((s) => ({
+          id: s.id,
+          label: s.title,
+        }))}
+      />
 
       <div>
         {sections.map((section, idx) => (

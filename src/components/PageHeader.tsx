@@ -1,3 +1,4 @@
+import type { ReactNode } from "react";
 import { FadeInOnLoad } from "@/components/Reveal";
 
 interface Props {
@@ -6,9 +7,12 @@ interface Props {
   description?: string;
   imageSrc?: string;
   imageAlt?: string;
+  /** Optional right column (e.g. custom panel). Takes precedence over `imageSrc` when set. */
+  aside?: ReactNode;
 }
 
-export const PageHeader = ({ eyebrow, title, description, imageSrc, imageAlt }: Props) => {
+export const PageHeader = ({ eyebrow, title, description, imageSrc, imageAlt, aside }: Props) => {
+  const hasRightColumn = Boolean(aside || imageSrc);
   return (
     <section className="relative overflow-hidden bg-gradient-hero text-primary-foreground">
       <div
@@ -20,7 +24,7 @@ export const PageHeader = ({ eyebrow, title, description, imageSrc, imageAlt }: 
         }}
       />
       <div className="container-wide relative py-20 lg:py-28">
-        <div className={imageSrc ? "grid items-center gap-12 lg:grid-cols-[1.1fr_1fr]" : ""}>
+        <div className={hasRightColumn ? "grid items-center gap-12 lg:grid-cols-[1.1fr_1fr]" : ""}>
           <div>
             <FadeInOnLoad>
               <p className="eyebrow text-accent">{eyebrow}</p>
@@ -37,19 +41,25 @@ export const PageHeader = ({ eyebrow, title, description, imageSrc, imageAlt }: 
             )}
           </div>
 
-          {imageSrc && (
-            <FadeInOnLoad delay={0.14} className="relative">
-              <div className="absolute -inset-6 rounded-[2rem] bg-gradient-accent opacity-20 blur-3xl" aria-hidden />
-              <div className="relative overflow-hidden rounded-[1.75rem] border border-primary-foreground/10 shadow-elevated">
-                <img
-                  src={imageSrc}
-                  alt={imageAlt ?? "Page header image"}
-                  width={1920}
-                  height={1080}
-                  className="aspect-[4/3] w-full object-cover"
-                />
-              </div>
+          {aside ? (
+            <FadeInOnLoad delay={0.14} className="relative w-full min-w-0">
+              {aside}
             </FadeInOnLoad>
+          ) : (
+            imageSrc && (
+              <FadeInOnLoad delay={0.14} className="relative">
+                <div className="absolute -inset-6 rounded-[2rem] bg-gradient-accent opacity-20 blur-3xl" aria-hidden />
+                <div className="relative overflow-hidden rounded-[1.75rem] border border-primary-foreground/10 shadow-elevated">
+                  <img
+                    src={imageSrc}
+                    alt={imageAlt ?? "Page header image"}
+                    width={1920}
+                    height={1080}
+                    className="aspect-[4/3] w-full object-cover"
+                  />
+                </div>
+              </FadeInOnLoad>
+            )
           )}
         </div>
       </div>

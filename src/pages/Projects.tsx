@@ -2,6 +2,7 @@ import { Lightbulb, FileText, Boxes, Users, ToyBrick } from "lucide-react";
 import { SiteLayout } from "@/components/SiteLayout";
 import { PageHeader } from "@/components/PageHeader";
 import { FadeInInView } from "@/components/Reveal";
+import { SectionTabs } from "@/components/SectionTabs";
 
 const Projects = () => {
   return (
@@ -10,30 +11,18 @@ const Projects = () => {
         eyebrow="Projects"
         title="Community-centered research and innovation projects."
         description="Our projects focus on practical solutions that improve accessibility, strengthen clinical care, and expand disability-centered design."
+        imageSrc={`${import.meta.env.BASE_URL}events-1.jpeg`}
+        imageAlt="Students and community members collaborating during an Innovators in Action event."
       />
 
-      <nav aria-label="Project sections" className="border-b border-border bg-background/80 sticky top-16 z-30 backdrop-blur lg:top-20">
-        <div className="container-wide flex gap-1 overflow-x-auto py-3">
-          <a
-            href="#pace-project"
-            className="whitespace-nowrap rounded-full px-4 py-2 text-sm font-medium text-foreground/70 transition hover:bg-muted hover:text-foreground"
-          >
-            PACE Project
-          </a>
-          <a
-            href="#autism-project"
-            className="whitespace-nowrap rounded-full px-4 py-2 text-sm font-medium text-foreground/70 transition hover:bg-muted hover:text-foreground"
-          >
-            Autism Project
-          </a>
-          <a
-            href="#adapt-toy"
-            className="whitespace-nowrap rounded-full px-4 py-2 text-sm font-medium text-foreground/70 transition hover:bg-muted hover:text-foreground"
-          >
-            Adapt Toy
-          </a>
-        </div>
-      </nav>
+      <SectionTabs
+        ariaLabel="Project sections"
+        items={[
+          { id: "pace-project", label: "PACE Project" },
+          { id: "autism-project", label: "Autism Project" },
+          { id: "adapt-toy", label: "Adapt Toy" },
+        ]}
+      />
 
       <div>
         <section id="pace-project" className="scroll-mt-40 lg:scroll-mt-44">
@@ -350,26 +339,31 @@ const Projects = () => {
                     Adaptive Toys Improve Engagement
                   </h3>
 
-                  <div className="mt-6 grid gap-5 lg:grid-cols-2">
-                    <div className="rounded-2xl border border-border bg-card p-6 shadow-card">
-                      <h4 className="font-serif text-xl font-semibold text-foreground">Making adaptive toys can be simple</h4>
-                      <ul className="mt-4 list-disc space-y-2 pl-5 text-base leading-relaxed text-muted-foreground">
-                        <li>Adding velcro</li>
-                        <li>Making knobs bigger</li>
-                        <li>Utilizing adapted switches</li>
-                      </ul>
-                    </div>
-
-                    <div className="rounded-2xl border border-border bg-card p-6 shadow-card">
-                      <h4 className="font-serif text-xl font-semibold text-foreground">Adaptive toys improved</h4>
-                      <p className="mt-4 text-base leading-relaxed text-muted-foreground">
-                        <strong>&ldquo;Appropriate participation&rdquo;</strong>
+                  <div className="mt-6 grid items-start gap-5 lg:grid-cols-[minmax(0,592px)_minmax(0,592px)] lg:justify-between">
+                    <div className="space-y-4 lg:max-w-[592px]">
+                      <p className="text-base leading-relaxed text-muted-foreground">
+                        Making adaptive toys can be simple: strategies include adding velcro, making knobs bigger, and
+                        utilizing adapted switches. Adaptive toys are associated with more{" "}
+                        <strong className="text-foreground">&ldquo;appropriate participation&rdquo;</strong>—including
+                        handling a toy and activating it—so children can join in more fully.
                       </p>
-                      <ul className="mt-2 list-disc space-y-2 pl-5 text-base leading-relaxed text-muted-foreground">
-                        <li>Handling toy</li>
-                        <li>Activating toy</li>
-                      </ul>
+                      <img
+                        src={`${import.meta.env.BASE_URL}projects/adapt-toy-9.png`}
+                        alt="Engagement with an adapted play activity."
+                        loading="lazy"
+                        width={800}
+                        height={600}
+                        className="w-full rounded-2xl border border-border object-cover shadow-card"
+                      />
                     </div>
+                    <img
+                      src={`${import.meta.env.BASE_URL}projects/adapt-toy-10.png`}
+                      alt="A child using an adapted switch or control with a toy."
+                      loading="lazy"
+                      width={800}
+                      height={600}
+                      className="w-full rounded-2xl border border-border object-cover shadow-card lg:max-w-[592px]"
+                    />
                   </div>
 
                   <div className="mt-6 space-y-2 text-sm leading-relaxed text-muted-foreground">
