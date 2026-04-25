@@ -24,57 +24,8 @@ const Projects = () => {
         ]}
       />
 
-      <div>
-        <section id="pace-project" className="scroll-mt-40 lg:scroll-mt-44">
-          <div className="container-wide py-16 lg:py-20">
-            <FadeInInView>
-              <article className="space-y-8">
-                <div className="max-w-3xl">
-                  <p className="eyebrow">
-                    <Lightbulb className="h-3.5 w-3.5" aria-hidden /> Assistive Navigation Design
-                  </p>
-                  <h2 className="display mt-4 text-balance">PACE Project: 3D-Printed Tactile Map</h2>
-                  <p className="mt-5 text-lg leading-relaxed text-foreground/85">
-                    Led by Jake Nazarian, the PACE Project supports adults over 65 who need home and community
-                    accommodations. This initiative develops a low-cost, 3D-printed tactile map of Lincoln
-                    Square Mall for people with low vision.
-                  </p>
-                  <p className="mt-4 text-base leading-relaxed text-muted-foreground">
-                    The map includes multiple levels of Braille (Grades 1, 2, and 3) so users can navigate
-                    spaces more independently and with greater confidence.
-                  </p>
-                </div>
-
-                <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-                  <div className="rounded-2xl border border-border bg-card p-6 shadow-card">
-                    <p className="eyebrow">
-                      <Boxes className="h-3.5 w-3.5" aria-hidden /> Resources Required
-                    </p>
-                    <ul className="mt-4 space-y-2 text-sm text-muted-foreground">
-                      <li>CAD software (free options available)</li>
-                      <li>TouchSee platform (free)</li>
-                      <li>3D printer</li>
-                    </ul>
-                  </div>
-
-                  <div className="rounded-2xl border border-border bg-card p-6 shadow-card sm:col-span-2 lg:col-span-2">
-                    <p className="eyebrow">
-                      <FileText className="h-3.5 w-3.5" aria-hidden /> Result
-                    </p>
-                    <p className="mt-4 text-base leading-relaxed text-foreground/85">
-                      A low-cost tactile 3D map with Braille that helps visually impaired individuals navigate
-                      important community spaces.
-                    </p>
-                  </div>
-                </div>
-              </article>
-            </FadeInInView>
-          </div>
-        </section>
-
-        <div className="border-t border-border" />
-
-        <section id="autism-project" className="scroll-mt-40 lg:scroll-mt-44">
+  
+ <section id="autism-project" className="scroll-mt-40 lg:scroll-mt-44">
           <div className="container-wide py-16 lg:py-20">
             <FadeInInView delay={0.08}>
               <article className="space-y-8">
@@ -140,6 +91,56 @@ const Projects = () => {
           </div>
         </section>
 
+        <div className="border-t border-border" />
+
+          <div>
+        <section id="pace-project" className="scroll-mt-40 lg:scroll-mt-44">
+          <div className="container-wide py-16 lg:py-20">
+            <FadeInInView>
+              <article className="space-y-8">
+                <div className="max-w-3xl">
+                  <p className="eyebrow">
+                    <Lightbulb className="h-3.5 w-3.5" aria-hidden /> Assistive Navigation Design
+                  </p>
+                  <h2 className="display mt-4 text-balance">PACE Project: 3D-Printed Tactile Map</h2>
+                  <p className="mt-5 text-lg leading-relaxed text-foreground/85">
+                    Led by Jake Nazarian, the PACE Project supports adults over 65 who need home and community
+                    accommodations. This initiative develops a low-cost, 3D-printed tactile map of Lincoln
+                    Square Mall for people with low vision.
+                  </p>
+                  <p className="mt-4 text-base leading-relaxed text-muted-foreground">
+                    The map includes multiple levels of Braille (Grades 1, 2, and 3) so users can navigate
+                    spaces more independently and with greater confidence.
+                  </p>
+                </div>
+
+                <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+                  <div className="rounded-2xl border border-border bg-card p-6 shadow-card">
+                    <p className="eyebrow">
+                      <Boxes className="h-3.5 w-3.5" aria-hidden /> Resources Required
+                    </p>
+                    <ul className="mt-4 space-y-2 text-sm text-muted-foreground">
+                      <li>CAD software (free options available)</li>
+                      <li>TouchSee platform (free)</li>
+                      <li>3D printer</li>
+                    </ul>
+                  </div>
+
+                  <div className="rounded-2xl border border-border bg-card p-6 shadow-card sm:col-span-2 lg:col-span-2">
+                    <p className="eyebrow">
+                      <FileText className="h-3.5 w-3.5" aria-hidden /> Result
+                    </p>
+                    <p className="mt-4 text-base leading-relaxed text-foreground/85">
+                      A low-cost tactile 3D map with Braille that helps visually impaired individuals navigate
+                      important community spaces.
+                    </p>
+                  </div>
+                </div>
+              </article>
+            </FadeInInView>
+          </div>
+        </section>
+            
         <div className="border-t border-border" />
 
         <section id="adapt-toy" className="scroll-mt-40 lg:scroll-mt-44">
