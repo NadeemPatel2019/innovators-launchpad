@@ -15,29 +15,13 @@ interface Member {
 }
 
 const executive: Member[] = [
-  { name: "Oluwabusayo Oni", role: "President", major: "Carle Illinois College of Medicine" },
+  { name: "Oluwabusayo Oni", role: "Founder - President", major: "Carle Illinois College of Medicine" },
   { name: "Gregory Ridgel", role: "Executive Team", major: "Carle Illinois College of Medicine" },
   { name: "Jona Kerluku", role: "Executive Team", major: "Carle Illinois College of Medicine" },
   { name: "Debora Nya", role: "Executive Team", major: "Carle Illinois College of Medicine" },
   { name: "Brian Wadugu", role: "Executive Team", major: "Carle Illinois College of Medicine" },
   { name: "Shelby Oke", role: "Executive Team", major: "Carle Illinois College of Medicine" },
   { name: "Diamond Coleman", role: "Executive Team", major: "Carle Illinois College of Medicine" },
-];
-
-const executiveBoard: Member[] = [
-  {
-    name: "Florence Adibu",
-    nameSuffix: ", M.A., PSM",
-    role: "Executive Board",
-    major: "Carle Illinois College of Medicine",
-  },
-  { name: "Dr. Nicole del Castillo", role: "Executive Board", major: "Carle Illinois College of Medicine" },
-  { name: "Dr. Julie Cutright", role: "Executive Board", major: "Carle Illinois College of Medicine" },
-  { name: "Dr. Allison Jones", role: "Executive Board", major: "Carle Illinois College of Medicine" },
-  { name: "Dr. Ruby Mendenhall", role: "Executive Board", major: "Carle Illinois College of Medicine" },
-  { name: "Dr. Deana McDonagh", role: "Executive Board", major: "Carle Illinois College of Medicine" },
-  { name: "Dr. Imanni Sheppard", role: "Executive Board", major: "Carle Illinois College of Medicine" },
-  { name: "Dr. Victor Stams", role: "Executive Board", major: "Carle Illinois College of Medicine" },
 ];
 
 const board: Member[] = [
@@ -61,11 +45,27 @@ const partners: Member[] = [
   { name: "Sofia Ranallo", role: "Research Partner", major: "Bioengineering — 2nd year" },
 ];
 
+const executiveBoard: Member[] = [
+  {
+    name: "Florence Adibu",
+    nameSuffix: ", M.A., PSM",
+    role: "Executive Board",
+    major: "Carle Illinois College of Medicine",
+  },
+  { name: "Dr. Nicole del Castillo", role: "Executive Board", major: "Carle Illinois College of Medicine" },
+  { name: "Dr. Julie Cutright", role: "Executive Board", major: "Carle Illinois College of Medicine" },
+  { name: "Dr. Allison Jones", role: "Executive Board", major: "Carle Illinois College of Medicine" },
+  { name: "Dr. Ruby Mendenhall", role: "Executive Board", major: "Carle Illinois College of Medicine" },
+  { name: "Dr. Deana McDonagh", role: "Executive Board", major: "Carle Illinois College of Medicine" },
+  { name: "Dr. Imanni Sheppard", role: "Executive Board", major: "Carle Illinois College of Medicine" },
+  { name: "Dr. Victor Stams", role: "Executive Board", major: "Carle Illinois College of Medicine" },
+];
+
 const teamSections = [
   { id: "leadership", label: "Leadership" },
-  { id: "executive-board", label: "Executive Board" },
   { id: "chapter-board", label: "Chapter Board" },
   { id: "faculty-partners", label: "Faculty Advisor & Undergraduate Partners" },
+  { id: "executive-board", label: "Executive Board" },
 ];
 
 const initials = (n: string) =>
