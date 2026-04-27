@@ -17,7 +17,7 @@ export const SectionTabs = ({ ariaLabel, items, className }: SectionTabsProps) =
       aria-label={ariaLabel}
       className={cn("sticky top-16 z-30 border-b border-border bg-background/80 backdrop-blur lg:top-20", className)}
     >
-      <div className="container-wide -mx-1 flex gap-1 overflow-x-auto px-1 py-3 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+      <div className="container-wide flex gap-1 overflow-x-auto py-3 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
         {items.map((item) => (
           <a
             key={item.id}

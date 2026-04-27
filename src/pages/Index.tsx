@@ -120,11 +120,11 @@ const Index = () => {
       </section>
 
       {/* MISSION PILLARS */}
-      <section className="container-wide py-20 lg:py-28">
+      <section className="container-wide py-16 lg:py-20">
         <FadeInInView className="grid gap-10 lg:grid-cols-[1fr_1.4fr] lg:gap-16">
           <div>
             <p className="eyebrow">Our mission</p>
-            <h2 className="display mt-4 text-balance">
+            <h2 className="display mt-3 text-balance">
               Engineering principles meet <span className="italic text-accent">health equity</span>.
             </h2>
             <p className="mt-5 text-lg text-muted-foreground">
@@ -151,7 +151,7 @@ const Index = () => {
 
       {/* IMPACT */}
       <section className="bg-brand-navy text-primary-foreground">
-        <FadeInInView className="container-wide py-20">
+        <FadeInInView className="container-wide py-16 lg:py-20">
           <div className="flex flex-col items-start justify-between gap-6 md:flex-row md:items-end">
             <div>
               <p className="eyebrow text-accent">Impact at a glance</p>
@@ -161,7 +161,7 @@ const Index = () => {
               Cumulative reach across our Adapt-a-Thons, Mini Make-a-Thons, and yearly research initiatives.
             </p>
           </div>
-          <div className="mt-12 grid gap-px overflow-hidden rounded-2xl bg-primary-foreground/15 sm:grid-cols-2 lg:grid-cols-5">
+          <div className="mt-10 grid gap-px overflow-hidden rounded-2xl bg-primary-foreground/15 sm:grid-cols-2 lg:grid-cols-5">
             {stats.map((s, i) => (
               <FadeInInView
                 key={s.label}
@@ -174,7 +174,7 @@ const Index = () => {
                   .filter(Boolean)
                   .join(" ")}
               >
-                <div className="p-8">
+                <div className="p-6">
                   <p className="font-serif text-5xl font-semibold text-accent lg:text-6xl">{s.value}</p>
                   <p className="mt-2 text-sm uppercase tracking-wider text-primary-foreground/70">
                     {s.label}
@@ -187,7 +187,7 @@ const Index = () => {
       </section>
 
       {/* GALLERY */}
-      <section className="container-wide py-20 lg:py-28">
+      <section className="container-wide py-16 lg:py-20">
         <FadeInInView className="flex flex-col items-start justify-between gap-6 md:flex-row md:items-end">
           <div>
             <p className="eyebrow">Project gallery</p>
@@ -211,7 +211,7 @@ const Index = () => {
 
       {/* CTA */}
       <section className="container-wide pb-20">
-        <FadeInInView className="relative overflow-hidden rounded-3xl bg-gradient-accent p-10 text-accent-foreground shadow-elevated lg:p-14">
+        <FadeInInView className="relative overflow-hidden rounded-3xl bg-gradient-accent p-6 text-accent-foreground shadow-elevated lg:p-8">
           <div
             aria-hidden
             className="absolute inset-0 opacity-20"

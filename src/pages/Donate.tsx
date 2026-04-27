@@ -150,11 +150,11 @@ const Donate = () => {
       </section>
 
       {/* Impact statement */}
-      <section className="container-wide py-20 lg:py-28">
+      <section className="container-wide py-16 lg:py-20">
         <FadeInInView className="grid gap-10 lg:grid-cols-[1fr_1.4fr] lg:gap-16">
           <div>
             <p className="eyebrow">Your impact</p>
-            <h2 className="display mt-4 text-balance">
+            <h2 className="display mt-3 text-balance">
               Concrete, measurable, <span className="italic text-accent">human</span>.
             </h2>
             <p className="mt-5 text-lg text-muted-foreground">
@@ -179,9 +179,9 @@ const Donate = () => {
       </section>
 
       {/* Other ways */}
-      <section className="container-wide pb-24">
-        <FadeInInView className="rounded-3xl border border-border bg-gradient-soft p-10 lg:p-14">
-          <div className="grid gap-10 lg:grid-cols-2">
+      <section className="container-wide py-16 lg:py-20">
+        <FadeInInView className="rounded-3xl border border-border bg-gradient-soft p-6 lg:p-8">
+          <div className="grid gap-8 lg:grid-cols-2">
             <div>
               <p className="eyebrow">Beyond donating</p>
               <h2 className="display mt-3">More ways to support our mission.</h2>
@@ -190,7 +190,7 @@ const Donate = () => {
                 contribute to disability-centered innovation.
               </p>
             </div>
-            <ul className="space-y-4">
+            <ul className="space-y-3">
               {[
                 { t: "Volunteer at an event", d: "Join an Adapt-a-Thon — no engineering background required." },
                 { t: "Share programming", d: "Amplify our work within your professional networks." },
@@ -199,7 +199,7 @@ const Donate = () => {
               ].map((i, idx) => (
                 <li key={i.t}>
                   <FadeInInView delay={Math.min(idx * 0.07, 0.2)}>
-                    <div className="rounded-xl border border-border bg-card p-5 shadow-card">
+                    <div className="rounded-xl border border-border bg-card p-6 shadow-card">
                       <p className="font-serif text-base font-semibold text-foreground">{i.t}</p>
                       <p className="mt-1 text-sm text-muted-foreground">{i.d}</p>
                     </div>

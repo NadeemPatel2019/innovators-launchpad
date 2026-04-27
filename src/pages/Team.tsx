@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { SiteLayout } from "@/components/SiteLayout";
 import { PageHeader } from "@/components/PageHeader";
-import { FadeInOnLoad } from "@/components/Reveal";
+import { FadeInInView } from "@/components/Reveal";
 import { SectionTabs } from "@/components/SectionTabs";
 
 const photoExtensions = ["jpeg", "jpg", "png", "webp"] as const;
@@ -98,44 +98,48 @@ const Card = ({ m, i }: { m: Member; i: number }) => {
     setImageFailed(false);
   }, [slug]);
 
+  const content = (
+    <article className="group rounded-2xl border border-border bg-card p-6 shadow-card transition hover:-translate-y-1 hover:shadow-elevated">
+      {!imageFailed ? (
+        <div className="mx-auto w-full max-w-[240px] overflow-hidden rounded-xl shadow-card">
+          <img
+            src={photoSrc}
+            alt={`${m.name}${m.nameSuffix ?? ""} headshot`}
+            loading="lazy"
+            decoding="async"
+            width={240}
+            height={300}
+            className="aspect-[4/5] w-full object-cover object-top"
+            onError={() => {
+              if (extIndex < photoExtensions.length - 1) {
+                setExtIndex((prev) => prev + 1);
+              } else {
+                setImageFailed(true);
+              }
+            }}
+          />
+        </div>
+      ) : (
+        <div
+          className={`mx-auto grid aspect-[4/5] w-full max-w-[240px] place-items-center rounded-xl bg-gradient-to-br ${palette[i % palette.length]} font-serif text-xl font-semibold text-primary-foreground shadow-card`}
+          aria-hidden
+        >
+          {initials(m.name)}
+        </div>
+      )}
+      <h3 className="mt-5 font-serif text-lg font-semibold text-foreground">
+        {m.name}
+        {m.nameSuffix ?? ""}
+      </h3>
+      <p className="mt-1 text-sm font-medium text-accent">{m.role}</p>
+      <p className="mt-1 text-sm text-muted-foreground">{m.major}</p>
+    </article>
+  );
+
   return (
-    <FadeInOnLoad delay={Math.min(i * 0.06, 0.3)}>
-      <article className="group rounded-2xl border border-border bg-card p-6 shadow-card transition hover:-translate-y-1 hover:shadow-elevated">
-        {!imageFailed ? (
-          <div className="mx-auto w-full max-w-[240px] overflow-hidden rounded-xl shadow-card">
-            <img
-              src={photoSrc}
-              alt={`${m.name}${m.nameSuffix ?? ""} headshot`}
-              loading="lazy"
-              decoding="async"
-              width={240}
-              height={300}
-              className="aspect-[4/5] w-full object-cover object-top"
-              onError={() => {
-                if (extIndex < photoExtensions.length - 1) {
-                  setExtIndex((prev) => prev + 1);
-                } else {
-                  setImageFailed(true);
-                }
-              }}
-            />
-          </div>
-        ) : (
-          <div
-            className={`mx-auto grid aspect-[4/5] w-full max-w-[240px] place-items-center rounded-xl bg-gradient-to-br ${palette[i % palette.length]} font-serif text-xl font-semibold text-primary-foreground shadow-card`}
-            aria-hidden
-          >
-            {initials(m.name)}
-          </div>
-        )}
-        <h3 className="mt-5 font-serif text-lg font-semibold text-foreground">
-          {m.name}
-          {m.nameSuffix ?? ""}
-        </h3>
-        <p className="mt-1 text-sm font-medium text-accent">{m.role}</p>
-        <p className="mt-1 text-sm text-muted-foreground">{m.major}</p>
-      </article>
-    </FadeInOnLoad>
+    <FadeInInView delay={Math.min(i * 0.06, 0.24)}>
+      {content}
+    </FadeInInView>
   );
 };
 
@@ -152,10 +156,10 @@ const Section = ({
 }) => (
   <section id={id} className="scroll-mt-40 lg:scroll-mt-44">
     <div className="container-wide py-16 lg:py-20">
-      <div className="max-w-2xl">
+      <FadeInInView className="max-w-2xl">
         <p className="eyebrow">{eyebrow}</p>
         <h2 className="display mt-3">{title}</h2>
-      </div>
+      </FadeInInView>
       <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
         {members.map((m, i) => <Card key={m.name} m={m} i={i} />)}
       </div>

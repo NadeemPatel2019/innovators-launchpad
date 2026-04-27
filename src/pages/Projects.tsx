@@ -27,13 +27,13 @@ const Projects = () => {
       <div>
         <section id="pace-project" className="scroll-mt-40 lg:scroll-mt-44">
           <div className="container-wide py-16 lg:py-20">
-            <FadeInInView>
-              <article className="space-y-8">
-                <div className="max-w-3xl">
+            <article className="space-y-8">
+              <FadeInInView amount={0.08} className="max-w-3xl">
+                <div>
                   <p className="eyebrow">
                     <Lightbulb className="h-3.5 w-3.5" aria-hidden /> Assistive Navigation Design
                   </p>
-                  <h2 className="display mt-4 text-balance">PACE Project: 3D-Printed Tactile Map</h2>
+                  <h2 className="display mt-3 text-balance">PACE Project: 3D-Printed Tactile Map</h2>
                   <p className="mt-5 text-lg leading-relaxed text-foreground/85">
                     Led by Jake Nazarian, the PACE Project supports adults over 65 who need home and community
                     accommodations. This initiative develops a low-cost, 3D-printed tactile map of Lincoln
@@ -44,8 +44,10 @@ const Projects = () => {
                     spaces more independently and with greater confidence.
                   </p>
                 </div>
+              </FadeInInView>
 
-                <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+              <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+                <FadeInInView amount={0.08} delay={0.08}>
                   <div className="rounded-2xl border border-border bg-card p-6 shadow-card">
                     <p className="eyebrow">
                       <Boxes className="h-3.5 w-3.5" aria-hidden /> Resources Required
@@ -56,7 +58,9 @@ const Projects = () => {
                       <li>3D printer</li>
                     </ul>
                   </div>
+                </FadeInInView>
 
+                <FadeInInView amount={0.08} delay={0.14}>
                   <div className="rounded-2xl border border-border bg-card p-6 shadow-card sm:col-span-2 lg:col-span-2">
                     <p className="eyebrow">
                       <FileText className="h-3.5 w-3.5" aria-hidden /> Result
@@ -66,9 +70,9 @@ const Projects = () => {
                       important community spaces.
                     </p>
                   </div>
-                </div>
-              </article>
-            </FadeInInView>
+                </FadeInInView>
+              </div>
+            </article>
           </div>
         </section>
 
@@ -76,14 +80,14 @@ const Projects = () => {
 
         <section id="autism-project" className="scroll-mt-40 lg:scroll-mt-44">
           <div className="container-wide py-16 lg:py-20">
-            <FadeInInView delay={0.08}>
-              <article className="space-y-8">
+            <article className="space-y-8">
+              <FadeInInView amount={0.08}>
                 <div className="grid items-center gap-8 lg:grid-cols-[1.1fr_1fr]">
                   <div className="max-w-3xl">
                     <p className="eyebrow">
                       <Users className="h-3.5 w-3.5" aria-hidden /> Clinical Accessibility Research
                     </p>
-                    <h2 className="display mt-4 text-balance">Autism Project</h2>
+                    <h2 className="display mt-3 text-balance">Autism Project</h2>
                     <p className="mt-5 text-lg leading-relaxed text-foreground/85">
                       Led by Victoria Rivera, this project supports the minimally verbal autistic population by
                       identifying communication barriers between patients and healthcare providers and exploring
@@ -106,8 +110,10 @@ const Projects = () => {
                     />
                   </div>
                 </div>
+              </FadeInInView>
 
-                <div className="grid gap-5 lg:grid-cols-2">
+              <div className="grid gap-5 lg:grid-cols-2">
+                <FadeInInView amount={0.08} delay={0.08}>
                   <div className="rounded-2xl border border-border bg-card p-6 shadow-card">
                     <h3 className="font-serif text-xl font-semibold text-foreground">Project Initiatives</h3>
                     <ul className="mt-4 space-y-3 text-sm leading-relaxed text-muted-foreground">
@@ -116,7 +122,9 @@ const Projects = () => {
                       <li>Expand patient-centered approaches for assessments and care delivery.</li>
                     </ul>
                   </div>
+                </FadeInInView>
 
+                <FadeInInView amount={0.08} delay={0.14}>
                   <div className="rounded-2xl border border-border bg-card p-6 shadow-card">
                     <h3 className="font-serif text-xl font-semibold text-foreground">Increasing Outreach</h3>
                     <ul className="mt-4 space-y-3 text-sm leading-relaxed text-muted-foreground">
@@ -125,8 +133,10 @@ const Projects = () => {
                       <li>Develop guidance that helps physicians provide more respectful, patient-centered care.</li>
                     </ul>
                   </div>
-                </div>
+                </FadeInInView>
+              </div>
 
+              <FadeInInView amount={0.08} delay={0.12}>
                 <div className="rounded-2xl border border-accent/30 bg-accent/5 p-6">
                   <h3 className="font-serif text-xl font-semibold text-foreground">Key Questions Driving the Work</h3>
                   <ul className="mt-4 space-y-3 text-sm leading-relaxed text-foreground/85">
@@ -135,8 +145,8 @@ const Projects = () => {
                     <li>How can physician training better support effective, patient-centered communication?</li>
                   </ul>
                 </div>
-              </article>
-            </FadeInInView>
+              </FadeInInView>
+            </article>
           </div>
         </section>
 
@@ -144,13 +154,13 @@ const Projects = () => {
 
         <section id="adapt-toy" className="scroll-mt-40 lg:scroll-mt-44">
           <div className="container-wide py-16 lg:py-20">
-            <FadeInInView delay={0.12}>
-              <article className="space-y-8">
+            <article className="space-y-8">
+              <FadeInInView amount={0.08}>
                 <div>
                   <p className="eyebrow">
                     <ToyBrick className="h-3.5 w-3.5" aria-hidden /> Adaptive Play Research
                   </p>
-                  <h2 className="display mt-4 text-balance">Adapt Toy</h2>
+                  <h2 className="display mt-3 text-balance">Adapt Toy</h2>
                   <h3 className="mt-6 font-serif text-3xl font-semibold text-brand-navy">
                     Toys Impact Child Development
                   </h3>
@@ -166,7 +176,9 @@ const Projects = () => {
                     the same developmental milestones.
                   </p>
                 </div>
+              </FadeInInView>
 
+              <FadeInInView amount={0.08} delay={0.08}>
                 <div className="rounded-2xl border border-border bg-card p-6 shadow-card">
                   <div className="mx-auto max-w-4xl">
                     <div className="grid items-center gap-6 sm:grid-cols-[1fr_auto_1fr]">
@@ -214,7 +226,9 @@ const Projects = () => {
                   learning and development: A study of Startright Childhood Learning and Development Centre,
                   Owerri. <em>Journal of Development Communication and Applied Theatre, 2</em>(2), 82.
                 </p>
+              </FadeInInView>
 
+              <FadeInInView amount={0.08} delay={0.12}>
                 <div className="border-t border-border pt-8">
                   <h3 className="font-serif text-3xl font-semibold text-brand-navy">
                     Addressing needs for adaptive toys
@@ -223,7 +237,7 @@ const Projects = () => {
                   <div className="mt-6 rounded-2xl border border-border bg-card p-6 shadow-card">
                     <div className="grid gap-8 lg:grid-cols-2">
                       <div className="space-y-8 lg:pr-6">
-                        <div>
+                        <FadeInInView amount={0.08} delay={0.08}>
                           <div className="mt-2 flex items-start gap-3">
                             <div className="min-w-0">
                               <div className="flex items-start gap-3">
@@ -248,9 +262,9 @@ const Projects = () => {
                               className="h-24 w-24 flex-none object-contain"
                             />
                           </div>
-                        </div>
+                        </FadeInInView>
 
-                        <div className="lg:pl-24 lg:pt-2">
+                        <FadeInInView amount={0.08} delay={0.12} className="lg:pl-24 lg:pt-2">
                           <div className="mt-2 flex items-start gap-3">
                             <div className="min-w-0">
                               <div className="flex items-start gap-3">
@@ -275,11 +289,11 @@ const Projects = () => {
                               className="h-24 w-24 flex-none object-contain"
                             />
                           </div>
-                        </div>
+                        </FadeInInView>
                       </div>
 
                       <div className="space-y-8 lg:pt-10 lg:pl-2">
-                        <div>
+                        <FadeInInView amount={0.08} delay={0.16}>
                           <div className="mt-2 flex items-start gap-3">
                             <div className="min-w-0">
                               <div className="flex items-start gap-3">
@@ -304,9 +318,9 @@ const Projects = () => {
                               className="h-24 w-24 flex-none object-contain"
                             />
                           </div>
-                        </div>
+                        </FadeInInView>
 
-                        <div className="lg:pl-16 lg:pt-2">
+                        <FadeInInView amount={0.08} delay={0.2} className="lg:pl-16 lg:pt-2">
                           <div className="mt-2 flex items-start gap-3">
                             <div className="min-w-0">
                               <div className="flex items-start gap-3">
@@ -328,19 +342,21 @@ const Projects = () => {
                               className="h-24 w-24 flex-none object-contain"
                             />
                           </div>
-                        </div>
+                        </FadeInInView>
                       </div>
                     </div>
                   </div>
                 </div>
+              </FadeInInView>
 
+              <FadeInInView amount={0.08} delay={0.16}>
                 <div className="border-t border-border pt-8">
                   <h3 className="font-serif text-3xl font-semibold text-brand-navy">
                     Adaptive Toys Improve Engagement
                   </h3>
 
                   <div className="mt-6 grid items-start gap-5 lg:grid-cols-[minmax(0,592px)_minmax(0,592px)] lg:justify-between">
-                    <div className="space-y-4 lg:max-w-[592px]">
+                    <FadeInInView amount={0.08} delay={0.08} className="space-y-4 lg:max-w-[592px]">
                       <p className="text-base leading-relaxed text-muted-foreground">
                         Making adaptive toys can be simple: strategies include adding velcro, making knobs bigger, and
                         utilizing adapted switches. Adaptive toys are associated with more{" "}
@@ -355,15 +371,17 @@ const Projects = () => {
                         height={600}
                         className="w-full rounded-2xl border border-border object-cover shadow-card"
                       />
-                    </div>
-                    <img
-                      src={`${import.meta.env.BASE_URL}projects/adapt-toy-10.png`}
-                      alt="A child using an adapted switch or control with a toy."
-                      loading="lazy"
-                      width={800}
-                      height={600}
-                      className="w-full rounded-2xl border border-border object-cover shadow-card lg:max-w-[592px]"
-                    />
+                    </FadeInInView>
+                    <FadeInInView amount={0.08} delay={0.14}>
+                      <img
+                        src={`${import.meta.env.BASE_URL}projects/adapt-toy-10.png`}
+                        alt="A child using an adapted switch or control with a toy."
+                        loading="lazy"
+                        width={800}
+                        height={600}
+                        className="w-full rounded-2xl border border-border object-cover shadow-card lg:max-w-[592px]"
+                      />
+                    </FadeInInView>
                   </div>
 
                   <div className="mt-6 space-y-2 text-sm leading-relaxed text-muted-foreground">
@@ -378,8 +396,8 @@ const Projects = () => {
                     </p>
                   </div>
                 </div>
-              </article>
-            </FadeInInView>
+              </FadeInInView>
+            </article>
           </div>
         </section>
       </div>
