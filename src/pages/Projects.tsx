@@ -235,23 +235,17 @@ const Projects = () => {
                   </h3>
 
                   <div className="mt-6 rounded-2xl border border-border bg-card p-6 shadow-card">
-                    <div className="grid gap-8 lg:grid-cols-2">
-                      <div className="space-y-8 lg:pr-6">
+                    <div className="lg:grid lg:grid-cols-2 lg:gap-8">
+                      <div className="space-y-6 lg:space-y-8 lg:pr-6">
                         <FadeInInView amount={0.08} delay={0.08}>
                           <div className="mt-2 flex items-start gap-3">
-                            <div className="min-w-0">
-                              <div className="flex items-start gap-3">
-                                <div className="grid h-9 w-9 flex-none shrink-0 place-items-center rounded-full border border-border bg-background text-xs font-semibold text-foreground shadow-sm">
-                                  1
-                                </div>
-                                <p className="text-2xl font-medium leading-tight text-brand-navy">
-                                  Off-the-shelf toys require:
-                                </p>
-                              </div>
-                              <ul className="mt-3 ml-12 list-disc space-y-1 pl-5 text-2xl leading-tight text-brand-navy">
-                                <li>Fine motor dexterity</li>
-                                <li>Grip strength</li>
-                              </ul>
+                            <div className="grid h-9 w-9 flex-none shrink-0 place-items-center rounded-full border border-border bg-background text-xs font-semibold text-foreground shadow-sm">
+                              1
+                            </div>
+                            <div className="min-w-0 flex-1">
+                              <p className="text-[14px] font-normal leading-[1.35] text-brand-navy lg:text-2xl lg:leading-tight">
+                                Off-the-shelf toys require fine motor dexterity and grip strength.
+                              </p>
                             </div>
                             <img
                               src={`${import.meta.env.BASE_URL}projects/adapt-toy-3.jpeg`}
@@ -259,26 +253,20 @@ const Projects = () => {
                               loading="lazy"
                               width={170}
                               height={170}
-                              className="h-24 w-24 flex-none object-contain"
+                              className="h-20 w-20 flex-none object-contain lg:h-24 lg:w-24"
                             />
                           </div>
                         </FadeInInView>
 
                         <FadeInInView amount={0.08} delay={0.12} className="lg:pl-24 lg:pt-2">
                           <div className="mt-2 flex items-start gap-3">
-                            <div className="min-w-0">
-                              <div className="flex items-start gap-3">
-                                <div className="grid h-9 w-9 flex-none shrink-0 place-items-center rounded-full border border-border bg-background text-xs font-semibold text-foreground shadow-sm">
-                                  2
-                                </div>
-                                <p className="text-2xl font-medium leading-tight text-brand-navy">
-                                  Many kids experience:
-                                </p>
-                              </div>
-                              <ul className="mt-3 ml-12 list-disc space-y-1 pl-5 text-2xl leading-tight text-brand-navy">
-                                <li>Less strength</li>
-                                <li>Limited motor control</li>
-                              </ul>
+                            <div className="grid h-9 w-9 flex-none shrink-0 place-items-center rounded-full border border-border bg-background text-xs font-semibold text-foreground shadow-sm">
+                              2
+                            </div>
+                            <div className="min-w-0 flex-1">
+                              <p className="text-[14px] font-medium leading-[1.35] text-brand-navy lg:text-2xl lg:leading-tight">
+                                Many kids experience less strength and limited motor control.
+                              </p>
                             </div>
                             <img
                               src={`${import.meta.env.BASE_URL}projects/adapt-toy-4.jpeg`}
@@ -286,28 +274,22 @@ const Projects = () => {
                               loading="lazy"
                               width={170}
                               height={170}
-                              className="h-24 w-24 flex-none object-contain"
+                              className="h-20 w-20 flex-none object-contain lg:h-24 lg:w-24"
                             />
                           </div>
                         </FadeInInView>
                       </div>
 
-                      <div className="space-y-8 lg:pt-10 lg:pl-2">
+                      <div className="mt-6 space-y-6 lg:mt-0 lg:space-y-8 lg:pt-10 lg:pl-2">
                         <FadeInInView amount={0.08} delay={0.16}>
                           <div className="mt-2 flex items-start gap-3">
-                            <div className="min-w-0">
-                              <div className="flex items-start gap-3">
-                                <div className="grid h-9 w-9 flex-none shrink-0 place-items-center rounded-full border border-border bg-background text-xs font-semibold text-foreground shadow-sm">
-                                  3
-                                </div>
-                                <p className="text-2xl font-medium leading-tight text-brand-navy">
-                                  For many kids this can mean:
-                                </p>
-                              </div>
-                              <ul className="mt-3 ml-12 list-disc space-y-1 pl-5 text-2xl leading-tight text-brand-navy">
-                                <li>Fatigue</li>
-                                <li>Frustration</li>
-                              </ul>
+                            <div className="grid h-9 w-9 flex-none shrink-0 place-items-center rounded-full border border-border bg-background text-xs font-semibold text-foreground shadow-sm">
+                              3
+                            </div>
+                            <div className="min-w-0 flex-1">
+                              <p className="text-[14px] font-medium leading-[1.35] text-brand-navy lg:text-2xl lg:leading-tight">
+                                For many kids this can mean fatigue and frustration.
+                              </p>
                             </div>
                             <img
                               src={`${import.meta.env.BASE_URL}projects/adapt-toy-6.jpeg`}
@@ -315,23 +297,20 @@ const Projects = () => {
                               loading="lazy"
                               width={170}
                               height={170}
-                              className="h-24 w-24 flex-none object-contain"
+                              className="h-20 w-20 flex-none object-contain lg:h-24 lg:w-24"
                             />
                           </div>
                         </FadeInInView>
 
                         <FadeInInView amount={0.08} delay={0.2} className="lg:pl-16 lg:pt-2">
                           <div className="mt-2 flex items-start gap-3">
-                            <div className="min-w-0">
-                              <div className="flex items-start gap-3">
-                                <div className="grid h-9 w-9 flex-none shrink-0 place-items-center rounded-full border border-border bg-background text-xs font-semibold text-foreground shadow-sm">
-                                  4
-                                </div>
-                                <p className="text-2xl font-medium leading-tight text-brand-navy">
-                                  Button switches are often easier to use, and give more children the ability to
-                                  play.
-                                </p>
-                              </div>
+                            <div className="grid h-9 w-9 flex-none shrink-0 place-items-center rounded-full border border-border bg-background text-xs font-semibold text-foreground shadow-sm">
+                              4
+                            </div>
+                            <div className="min-w-0 flex-1">
+                              <p className="text-[14px] font-medium leading-[1.35] text-brand-navy lg:text-2xl lg:leading-tight">
+                                Button switches are often easier to use, and give more children the ability to play.
+                              </p>
                             </div>
                             <img
                               src={`${import.meta.env.BASE_URL}projects/adapt-toy-5.jpeg`}
@@ -339,7 +318,7 @@ const Projects = () => {
                               loading="lazy"
                               width={170}
                               height={170}
-                              className="h-24 w-24 flex-none object-contain"
+                              className="h-20 w-20 flex-none object-contain lg:h-24 lg:w-24"
                             />
                           </div>
                         </FadeInInView>

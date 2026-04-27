@@ -12,6 +12,8 @@ interface Member {
   nameSuffix?: string;
   role: string;
   major: string;
+  /** Optional explicit slug/path segment when photo filename differs from normalized name. */
+  photoSlug?: string;
 }
 
 const executive: Member[] = [
@@ -36,7 +38,12 @@ const executiveBoard: Member[] = [
   { name: "Dr. Allison Jones", role: "Executive Board", major: "Carle Illinois College of Medicine" },
   { name: "Dr. Ruby Mendenhall", role: "Executive Board", major: "Carle Illinois College of Medicine" },
   { name: "Dr. Deana McDonagh", role: "Executive Board", major: "Carle Illinois College of Medicine" },
-  { name: "Dr. Imanni Sheppard", role: "Executive Board", major: "Carle Illinois College of Medicine" },
+  {
+    name: "Dr. Imanni Sheppard",
+    role: "Executive Board",
+    major: "Carle Illinois College of Medicine",
+    photoSlug: "images/team/immani-sheppard",
+  },
   { name: "Dr. Victor Stams", role: "Executive Board", major: "Carle Illinois College of Medicine" },
 ];
 
@@ -90,8 +97,8 @@ const palette = [
 const Card = ({ m, i }: { m: Member; i: number }) => {
   const [extIndex, setExtIndex] = useState(0);
   const [imageFailed, setImageFailed] = useState(false);
-  const slug = memberSlug(m.name);
-  const photoSrc = `${import.meta.env.BASE_URL}team/${slug}.${photoExtensions[extIndex]}`;
+  const slug = m.photoSlug ?? `team/${memberSlug(m.name)}`;
+  const photoSrc = `${import.meta.env.BASE_URL}${slug}.${photoExtensions[extIndex]}`;
 
   useEffect(() => {
     setExtIndex(0);
